@@ -18,6 +18,7 @@ class ApiHelper(var context: Context) {
         val con_body = StringEntity(jsonData.toString())
         val token = PrefsHelper.getPrefs(context,"refresh_token")
         client.addHeader("Authorization","Bearer $token")
+
         //post to API
         client.post(context, api, con_body, "application/json",
             object : JsonHttpResponseHandler() {

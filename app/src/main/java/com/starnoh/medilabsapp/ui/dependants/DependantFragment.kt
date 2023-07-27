@@ -46,6 +46,8 @@ class DependantFragment : Fragment() {
         others = root.findViewById(R.id.others)
         radioGroup = root.findViewById(R.id.radioGroupGender)
         add_dependant.setOnClickListener {
+            val intSelectButton: Int = radioGroup!!.checkedRadioButtonId
+            radioButton = root.findViewById(intSelectButton)
             if(surname.text!!.isEmpty())
                 surname.setError("This field is empty")
             else if (others.text!!.isEmpty()){
@@ -99,6 +101,7 @@ class DependantFragment : Fragment() {
 
             override fun onSuccess(result: JSONObject?) {
                 Toast.makeText(requireContext(), result.toString(), Toast.LENGTH_SHORT).show()
+
             }
 
             override fun onFailure(result: String?) {

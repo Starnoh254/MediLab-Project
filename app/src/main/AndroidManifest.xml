@@ -39,8 +39,7 @@
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".MainActivity"
-            android:exported="false"
-            android:launchMode="singleInstance" />
+            android:exported="false" />
         <activity
             android:name=".Screen1"
             android:exported="true"

@@ -36,15 +36,15 @@
             android:layout_marginRight="5dp"
             android:text="Sign Out"
             android:id="@+id/signout"/>
-        <com.google.android.material.button.MaterialButton
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:layout_weight="1"
-            android:textSize="11sp"
-            android:layout_marginRight="5dp"
-            android:text="Profile"
-            android:id="@+id/profile"/>
+
     </LinearLayout>
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:textSize="11sp"
+        android:text="Profile"
+        android:layout_margin="5dp"
+        android:id="@+id/profile"/>
 
 
     <EditText
