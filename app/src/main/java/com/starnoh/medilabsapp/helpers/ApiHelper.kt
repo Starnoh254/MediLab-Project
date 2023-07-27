@@ -16,7 +16,8 @@ class ApiHelper(var context: Context) {
         Toast.makeText(context, "Please Wait for response", Toast.LENGTH_LONG).show()
         val client = AsyncHttpClient(true, 80, 443)
         val con_body = StringEntity(jsonData.toString())
-        //client.addHeader("")
+        val token = PrefsHelper.getPrefs(context,"refresh_token")
+        client.addHeader("Authorization","Bearer $token")
         //post to API
         client.post(context, api, con_body, "application/json",
             object : JsonHttpResponseHandler() {
@@ -100,6 +101,7 @@ class ApiHelper(var context: Context) {
         Toast.makeText(context, "Please Wait for response", Toast.LENGTH_LONG).show()
         val client = AsyncHttpClient(true, 80, 443)
         val con_body = StringEntity(jsonData.toString())
+
         //PUT to API
         client.put(context, api, con_body, "application/json",
             object : JsonHttpResponseHandler() {

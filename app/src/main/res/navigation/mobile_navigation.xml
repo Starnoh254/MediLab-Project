@@ -13,9 +13,9 @@
 
     <fragment
         android:id="@+id/navigation_dependants"
-        android:name="com.starnoh.medilabsapp.ui.dashboard.DashboardFragment"
+        android:name="com.starnoh.medilabsapp.ui.dependants.DependantFragment"
         android:label="@string/title_dependants"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_dependant" />
 
     <fragment
         android:id="@+id/navigation_notifications"
