@@ -39,8 +39,10 @@ class MainActivity : AppCompatActivity() {
         val user = findViewById<MaterialTextView>(R.id.user)
         val signin = findViewById<MaterialButton>(R.id.signin)
         val signout = findViewById<MaterialButton>(R.id.signout)
+        val profile = findViewById<MaterialButton>(R.id.profile)
         signin.visibility = View.GONE
         signout.visibility = View.GONE
+        profile.visibility = View.GONE
         val token = PrefsHelper.getPrefs(applicationContext,"refresh_token")
         val surname = PrefsHelper.getPrefs(applicationContext, "surname")
         if (token.isEmpty()){
@@ -51,6 +53,10 @@ class MainActivity : AppCompatActivity() {
             }
         }else{
             user.text = "You are logged in as $surname, Welcome "
+            profile.visibility = View.VISIBLE
+            profile.setOnClickListener {
+                startActivity(Intent(applicationContext,MemberProfile::class.java))
+            }
             signout.visibility = View.VISIBLE
             signout.setOnClickListener {
                 PrefsHelper.clearPrefs(applicationContext)
