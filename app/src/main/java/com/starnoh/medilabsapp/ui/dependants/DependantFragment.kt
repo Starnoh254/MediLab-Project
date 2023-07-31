@@ -1,6 +1,7 @@
 package com.starnoh.medilabsapp.ui.dependants
 
 import android.app.DatePickerDialog
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -9,10 +10,14 @@ import android.view.ViewGroup
 import android.widget.*
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
+import com.google.gson.GsonBuilder
 import com.starnoh.medilabsapp.R
+import com.starnoh.medilabsapp.ViewDependants
 import com.starnoh.medilabsapp.constants.Constants
 import com.starnoh.medilabsapp.helpers.ApiHelper
 import com.starnoh.medilabsapp.helpers.PrefsHelper
+import com.starnoh.medilabsapp.models.Dependant
+import com.starnoh.medilabsapp.models.LabTests
 import org.json.JSONArray
 import org.json.JSONObject
 import java.util.*
@@ -25,6 +30,7 @@ class DependantFragment : Fragment() {
     private lateinit var others: TextInputEditText
     var radioGroup: RadioGroup? = null
     lateinit var radioButton: RadioButton
+    private lateinit var viewDependant : MaterialButton
 
 
 
@@ -45,6 +51,8 @@ class DependantFragment : Fragment() {
         surname = root.findViewById(R.id.surname)
         others = root.findViewById(R.id.others)
         radioGroup = root.findViewById(R.id.radioGroupGender)
+        viewDependant = root.findViewById(R.id.view_dependant)
+
         add_dependant.setOnClickListener {
             val intSelectButton: Int = radioGroup!!.checkedRadioButtonId
             radioButton = root.findViewById(intSelectButton)
@@ -56,6 +64,9 @@ class DependantFragment : Fragment() {
                 post()
             }
 
+        }
+        viewDependant.setOnClickListener {
+            startActivity(Intent(requireContext(), ViewDependants::class.java))
         }
         return root
     }
@@ -101,6 +112,7 @@ class DependantFragment : Fragment() {
 
             override fun onSuccess(result: JSONObject?) {
                 Toast.makeText(requireContext(), result.toString(), Toast.LENGTH_SHORT).show()
+
 
             }
 

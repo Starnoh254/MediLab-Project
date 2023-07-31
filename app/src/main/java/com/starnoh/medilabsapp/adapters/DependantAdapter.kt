@@ -35,11 +35,11 @@ class DependantAdapter (var context: Context):
 
         val others = holder.itemView.findViewById<MaterialTextView>(R.id.dep_others)
         val dob = holder.itemView.findViewById<MaterialTextView>(R.id.dep_dob)
-        //Assume one LabTest
+        //Assume one Dependant
         val item = itemList[position]
         holder.surname.text = item.surname
         others.text = item.others
-        dob.text = "KES " + item.dob
+        dob.text =  item.dob
 
     }
 

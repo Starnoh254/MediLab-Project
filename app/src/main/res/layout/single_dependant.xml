@@ -68,13 +68,14 @@
                 android:layout_width="315dp"
                 android:layout_height="wrap_content"
                 android:text="2000 - 01 - 01"
+                android:gravity="end"
                 android:textStyle="normal"
                 android:textSize="15sp"
                 android:fontFamily="@font/montserrat"
                 android:textColor="@color/black"
-                android:textAlignment="textStart"
                 android:layout_marginTop="6dp"
                 android:layout_marginBottom="5dp"
+                android:paddingRight="10dp"
                 android:id="@+id/dep_dob"/>
 
 

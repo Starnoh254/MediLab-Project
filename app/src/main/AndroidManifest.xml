@@ -14,6 +14,9 @@
         android:theme="@style/Theme.MedilabsApp"
         tools:targetApi="31">
         <activity
+            android:name=".ViewDependants"
+            android:exported="false" />
+        <activity
             android:name=".MemberProfile"
             android:exported="false"
             android:label="@string/title_activity_member_profile" />
