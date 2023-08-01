@@ -61,7 +61,7 @@ class DependantFragment : Fragment() {
             else if (others.text!!.isEmpty()){
                 others.setError("This field is required")
             }else{
-                post()
+
             }
 
         }
@@ -95,32 +95,5 @@ class DependantFragment : Fragment() {
 
     }
 
-    private fun post(){
-        val helper = ApiHelper(requireContext())
-        val api = "${Constants.BASE_URL}/add_dependant"
-        val member_id = PrefsHelper.getPrefs(requireContext(), "member_id")
-        val body = JSONObject()
-        body.put("surname",surname.text)
-        body.put("others",others.text)
-        body.put("gender",radioButton.text)
-        body.put("dob",selectedDate)
-        body.put("member_id",member_id)
-        helper.post(api,body, object : ApiHelper.CallBack {
-            override fun onSuccess(result: JSONArray?) {
-
-            }
-
-            override fun onSuccess(result: JSONObject?) {
-                Toast.makeText(requireContext(), result.toString(), Toast.LENGTH_SHORT).show()
-
-
-            }
-
-            override fun onFailure(result: String?) {
-
-            }
-
-        })
-    }
 
 }

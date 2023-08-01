@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.View
 import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.Toast
@@ -26,16 +27,17 @@ class ViewDependants : AppCompatActivity() {
     lateinit var progress: ProgressBar
     lateinit var swiperefresh: SwipeRefreshLayout
     lateinit var dependantadapter: DependantAdapter
+    lateinit var recyclerView: RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_view_dependants)
 
-        val recyclerview:RecyclerView = findViewById(R.id.recyclerview)
+        recyclerView = findViewById(R.id.recyclerview)
          dependantadapter = DependantAdapter(applicationContext)
-        recyclerview.layoutManager = LinearLayoutManager(this)
-        recyclerview.setHasFixedSize(true)
-        recyclerview.adapter = dependantadapter
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.setHasFixedSize(true)
+        recyclerView.adapter = dependantadapter
 
         swiperefresh = findViewById(R.id.swipeRefreshLayout)
         progress = findViewById(R.id.progress)
@@ -69,11 +71,15 @@ class ViewDependants : AppCompatActivity() {
         body.put("member_id", member_id)
         helper.post(api,body, object : ApiHelper.CallBack {
             override fun onSuccess(result: JSONArray?) {
+                progress.visibility = View.GONE
+                swiperefresh.isRefreshing = false
                 val gson = GsonBuilder().create()
                 itemList = gson.fromJson(
                     result.toString(),
                     Array<Dependant>::class.java
                 ).toList()
+                dependantadapter.setListItems(itemList)
+                recyclerView.adapter = dependantadapter
 
 
                 }
@@ -86,6 +92,8 @@ class ViewDependants : AppCompatActivity() {
             }
 
             override fun onFailure(result: String?) {
+                progress.visibility = View.GONE
+
 
             }
 
